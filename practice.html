@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todolist</title>
+    <style>
+        .container{
+            margin: 0;
+            min-height: 100vh;
+            background-image: url("6243378.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .maincontent
+        {
+            width: 33%;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            border: 3px solid black;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+
+    background: rgba(255, 255, 255, 0.6); /* transparent white */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); 
+        }
+        .inputtask
+        {
+            border-radius: 5px;
+            width: 350px;
+            height: 40px;
+            text-align: center;
+        }
+        .addbutton
+        {
+            border-radius: 5px;
+            width: 350px;
+            height: 40px;
+            margin-top: 4px;
+            background: #c787c7;
+            background: linear-gradient(100deg,rgba(199, 135, 199, 0.92) 0%, rgba(135, 3, 135, 1) 0%, rgba(219, 151, 151, 1) 100%);
+        }
+
+        .complete
+        {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .task-btn
+        {
+            max-width: 90px;
+            min-height: 20px;
+            background: #c787c7;
+            background: linear-gradient(100deg,rgba(199, 135, 199, 0.92) 0%, rgba(135, 3, 135, 1) 0%, rgba(219, 151, 151, 1) 100%);
+        }
+    </style>
+</head>
+<body>
+ 
+    
+    <div class="container">
+    <div class="maincontent">
+    <input class="inputtask"type="text" id="input" placeholder="enter your task"><br>
+    <button id="addtask" class="addbutton">add</button>
+    <ul id="tasklist"></ul>
+    </div>
+    </div>
+
+    <script>
+        let input=document.getElementById("input");
+        let addbtn=document.getElementById("addtask");
+        let tasklist=document.getElementById("tasklist");
+
+    addbtn.addEventListener("click",function()
+{        let task=input.value;
+        if(task=="")
+    {
+        alert("task cannot be empty");
+        return;
+    }
+let li=document.createElement("li");
+li.innerText=task; 
+let completebtn=document.createElement("button");
+completebtn.innerText="✔";
+completebtn.addEventListener("click",function()
+{
+li.classList.toggle("complete");
+
+}
+);
+let deletebtn=document.createElement("button");
+deletebtn.innerText="❌";
+deletebtn.addEventListener("click",function()
+{
+    li.remove();
+});
+li.appendChild(completebtn);
+li.appendChild(deletebtn);
+tasklist.appendChild(li);
+completebtn.classList.add("task-btn");
+deletebtn.classList.add("task-btn");
+input.value="";
+});
+
+    </script>
+    
+</body>
+</html>
